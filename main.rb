@@ -1,4 +1,5 @@
 require 'json'
+require_relative 'my_list_modification'
 
 filename = 'todo.json'
 
@@ -10,31 +11,25 @@ end
 
 puts "What would you like to do
  (a-> to add a new list):
- (r-> to remove a list:)  "
+ (r-> to remove from the list:)
+ (ll-> to remove from the list:)  "
 
 cmd = gets.chomp.strip
 case cmd
 when "a"
-  while cmd
-    puts "Enter your todo (enter 'stop' when you finished):"
-    task = gets.chop
-    if task == "stop"
-      break
-    else
-      my_list.push(task)
-    end
-  end
-  puts "Your to do list  : ", my_list
-
-  File.open(filename, 'w') do |f|
-    f.write(JSON.pretty_generate(my_list))
-  end
-
+  add_a_task(my_list, cmd, filename)
 when "r"
-  puts "Ajouter supprimé."
+  delete(my_list, cmd, filename)
+when "ll"
+  index = 1
+  puts "Your todo list: "
+  my_list.each do |chore|
+    puts "#{index}. #{chore}"
+    index += 1
+  end
 
 else
-  puts "Commande inconnue."
+  puts "Unknown command.please try again."
 end
 
 
