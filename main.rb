@@ -1,6 +1,6 @@
 require 'json'
 require_relative 'my_list_modification'
-
+require_relative 'todos_status'
 filename = 'todo.json'
 
 begin
@@ -8,25 +8,25 @@ begin
 rescue
   my_list = []
 end
-
-puts "What would you like to do
- (a-> to add a new list):
- (r-> to remove from the list:)
- (ll-> to remove from the list:)  "
+puts "What would you like to do :
+1. Add item
+2. Delete
+3. Display the list (done)
+4. Update (done)
+5. Update (undone)"
 
 cmd = gets.chomp.strip
 case cmd
-when "a"
+when "1"
   add_a_task(my_list, cmd, filename)
-when "r"
-  delete(my_list, cmd, filename)
-when "ll"
-  index = 1
-  puts "Your todo list: "
-  my_list.each do |chore|
-    puts "#{index}. #{chore}"
-    index += 1
-  end
+when "2"
+  delete_a_task(my_list, cmd, filename)
+when "3"
+  display_list(my_list)
+when "4"
+  done_undone(my_list, filename, 'done',cmd)
+when "5"
+  done_undone(my_list, filename, 'undone', cmd)
 
 else
   puts "Unknown command.please try again."
