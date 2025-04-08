@@ -8,7 +8,7 @@ def add_a_task(my_list, cmd, filename)
     elsif task == "stop"
       break
     else
-      task = task, 'undone'
+      task = task, 'undone','no due date'
       my_list.push(task)
     end
   end
@@ -46,7 +46,7 @@ def display_list(my_list)
   index = 1
   puts "Your todo list: "
   my_list.each do |chore|
-    puts "#{index}. #{chore[0]} #{chore[1]} "
+    puts "#{index}. #{chore[0]} #{chore[1]}  #{chore[2]}"
     index += 1
   end
 end
