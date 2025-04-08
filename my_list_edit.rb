@@ -20,7 +20,7 @@ def add_a_task(my_list, cmd, filename)
 end
 def delete_a_task (my_list , cmd, filename)
   if my_list.empty?
-    puts " We can not delete from your list. There is no task in it. "
+    puts "We can not delete from your list. There is no task in it. "
   else
     display_list(my_list)
     while cmd
@@ -31,7 +31,7 @@ def delete_a_task (my_list , cmd, filename)
       elsif chose_number_to_delete == 0
         puts "Please enter a valid number."
       else
-        puts "the todo '#{my_list[chose_number_to_delete - 1][0]}'is deleted from the list."
+        puts "The todo '#{my_list[chose_number_to_delete - 1][0]}'is deleted from the list."
         my_list.delete(my_list[chose_number_to_delete - 1])
         File.open(filename, 'w') do |f|
           f.write(JSON.pretty_generate(my_list))

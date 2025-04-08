@@ -16,7 +16,7 @@ def done_undone(my_list, filename, status, cmd)
         File.open(filename, 'w') do |f|
           f.write(JSON.pretty_generate(my_list))
         end
-        puts "the todo '#{my_list[number_to_update - 1][0]}' is #{status}."
+        puts "The todo '#{my_list[number_to_update - 1][0]}' is #{status}."
         break
       end
     end
