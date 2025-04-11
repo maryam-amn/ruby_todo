@@ -12,11 +12,11 @@ def done_undone(my_list, filename, status, cmd)
         puts "Please enter a valid number."
       else
         puts number_to_update
-        my_list[number_to_update - 1][1] = status
+        my_list[number_to_update - 1]['status'] = status
         File.open(filename, 'w') do |f|
           f.write(JSON.pretty_generate(my_list))
         end
-        puts "The todo '#{my_list[number_to_update - 1][0]}' is #{status}."
+        puts "The todo '#{my_list[number_to_update - 1]["content"]}' is #{status}."
         break
       end
     end
@@ -48,7 +48,7 @@ def add_date (my_list, cmd, filename)
           else
             begin
               test = Date.strptime(chosen_date, '%Y-%m-%d')
-              my_list[chose_task - 1][2] = "#{test}"
+              my_list[chose_task - 1]['due_date'] = "#{test}"
               File.open(filename, 'w') do |f|
                 f.write(JSON.pretty_generate(my_list))
               end
